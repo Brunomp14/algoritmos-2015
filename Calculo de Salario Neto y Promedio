@@ -1,0 +1,48 @@
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+#include "stdio.h"
+using namespace std;
+
+float salrioNeto (float sb);
+
+void main (void)
+{ 
+	int n, i, sm = 1400;
+	float s, sb, sn, prom;
+	do {
+	cout << "Ingrese el numero de empleados: ";
+	cin >> n;
+	} while (n <= 0);
+	s = 0;
+	for (i = 1; i <= n; i++)
+	{
+		do {
+		cout << "\nIngrese el valor del Salario Bruto: ";
+		cin >> sb;
+		} while (sb <= 1400);
+		if (sb > (sm * 2))
+		{
+			sn = salrioNeto (sb);
+			cout << "Salario Neto es: " << sn << "\n";
+		}			
+		else
+		{
+			sn = sb;
+			cout << "Salario Neto es: " << sn << "\n";
+		}
+		s = s + sn;
+	}
+	cout << "\n\nEl Total a pagar es: " << s << "\n";
+	prom = s / n;
+	cout << "\nEl Promedio es igual a: " << prom;
+	getch ();
+}
+
+float salrioNeto (float sb)
+{
+	int t;
+	float IVA = 0.13, AFP = 0.02;
+	t = sb * (1 - IVA - AFP);
+	return (t);
+}
