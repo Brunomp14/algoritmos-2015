@@ -1,0 +1,75 @@
+// P26 Salario Neto Vector Tarea U 2.cpp: define el punto de entrada de la aplicación de consola.
+// Nombre: Jose Bruno Maldonado Pesoa
+// Registro: 2012113541
+// Fecha: 10 / 03 / 2015
+
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+#include "stdio.h"
+using namespace std;
+#define MAX 100
+
+void leerVector (float V[MAX], int n);
+float SumarSalarioNeto (float V[MAX], int n);
+float Promedio (float sum, int n);
+
+void main (void)
+{
+	int n;
+	float V[MAX], prom, sum;
+	cout <<"Ingresar el Numero de Empleados: ";
+	cin >> n;
+	leerVector (V, n);
+	sum = SumarSalarioNeto (V, n);
+	prom = Promedio (sum, n);
+	cout << "\n\n\nEl Total a pagar es: " << sum;	
+	cout << "\n\nEl Promedio es: " << prom;
+	_getch ();
+}
+
+void leerVector (float V[MAX], int n)
+{
+	int i;
+	for (i = 0; i < n; i++)
+	{
+		do {
+		cout << "\nIngrese el Salario Bruto V[" << i+1 << "] = ";
+		cin >> V[i];
+		} while (!(V[i] >= 1650));
+	}
+}
+
+float SumarSalarioNeto (float V[MAX], int n)
+{
+	int i, sm = 1400;
+	float IVA = 0.13, AFP = 0.02, s, S[MAX];
+	s = 0;
+	cout << "\n\t----------------------------------------------------";
+	cout << "\n\t\t\t    Planilla\n";
+	cout << "\t----------------------------------------------------\n";
+	cout << "\tNo.\t\tSueldo Bruto\t\tSueldo Neto\n"; 
+	cout << "\t----------------------------------------------------\n";
+	for (i = 0; i < n; i++)
+	{
+		if (V[i] > (sm * 2))
+		{
+			S[i] = V[i]*(1 - IVA - AFP);
+			cout << "\n\t" << i + 1 << "\t\t" << V[i] << "\t\t\t" << S[i];
+		}
+		else
+		{
+			S[i] = V[i];
+			cout << "\n\t" << i + 1 << "\t\t" << V[i] << "\t\t\t" << S[i];
+		}
+		s = s + S[i];
+	}
+	return (s);
+}
+
+float Promedio (float sum, int n)
+{
+	float p;
+	p = sum / n;
+	return (p);
+}
