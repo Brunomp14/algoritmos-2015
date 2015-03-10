@@ -1,0 +1,32 @@
+#include "stdafx.h"
+#include "stdio.h"
+#include "conio.h"
+#include "math.h"
+#include "iostream"
+using namespace std;
+
+void EcuacionCuadratica (float a, float b, float c);
+
+void main (void)
+{
+	float a, b, c, X1, X2;
+	cout << "Ingrese los valores de a, b, c: ";
+	cin >> a >> b >> c;
+	EcuacionCuadratica (a, b, c);
+	_getch ();
+}
+
+void EcuacionCuadratica (float a, float b, float c)
+{
+	float R, X1 ,X2;
+	R = pow (b,2) - 4 * a * c;
+	if (R >= 0)
+	{
+		X1 = (-b + sqrt (R))/(2 * a);
+		X2 = (-b - sqrt (R))/(2 * a);
+		cout << "El Valor de X1 es: " << X1;
+		cout << "\nEl Valor de X2 es: " << X2;
+	}
+	else
+		cout << "La Ecuacion es Infinita";
+}
