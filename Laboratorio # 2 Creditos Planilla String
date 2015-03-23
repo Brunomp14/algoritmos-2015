@@ -1,0 +1,66 @@
+#include "stdafx.h"
+#include <string>
+#include "conio.h"
+#include <iostream>
+using namespace std;
+#define MAX 100
+
+void leerVectorStringCredito (string V[MAX], int n, int N[MAX]);
+void mostrarPlanilla (string V[MAX], int n, int N[MAX]);
+void metodoBurbuja (string V[MAX], int n, int N[MAX]);
+
+void main (void)
+{
+	int n, N[MAX];
+	string V[MAX];
+	cout << "Ingrese el numero de personas: ";
+	cin >> n;
+	leerVectorStringCredito (V, n, N);
+	mostrarPlanilla (V, n, N);
+	_getch ();
+}
+
+void leerVectorStringCredito (string V[MAX], int n, int N[MAX])
+{
+	int i;
+	for (i = 0; i < n ; i++)
+	{
+		cout << "\nNombre[" << i+1 << "] = ";
+		cin.ignore();
+		getline (cin, V[i]);
+		cout << "\nCredito[" << i+1 << "] = ";
+		cin >> N[i];
+	}
+}
+
+
+void mostrarPlanilla (string V[MAX], int n, int N[MAX])
+{
+	int i;
+	metodoBurbuja (V, n, N);
+	cout << "\n\t----------------------------------------------------";
+	cout << "\n\t\t\t    Planilla\n";
+	cout << "\t----------------------------------------------------\n";
+	cout << "\tNo.\t\tNombres\t\t\tCredito\n"; 
+	cout << "\t----------------------------------------------------\n";
+	for (i = 0; i < n; i++)
+			cout << "\n\t" << i + 1 << "\t\t" << V[i] << "\t\t\t" << N[i];	
+}
+
+void metodoBurbuja (string V[MAX], int n, int N[MAX])
+{
+	int i, j, aux;
+	for (i = 0; i < (n-1); i++)
+	{
+		for (j = 0; j < (n-i-1); j++)
+		{
+			if (N[j] < N[j+1])
+			{
+				aux = N[j];
+				N[j] = N[j+1];
+				N[j+1] = aux;
+				V[j].swap(V[j+1]);
+			}
+		}
+	}
+}
