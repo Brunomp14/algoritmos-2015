@@ -1,0 +1,254 @@
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+#include "iomanip"
+//#include "stdio.h"
+//#include "math.h"
+using namespace std;
+#define MAX 100
+
+int menu (void);
+
+void FUNCION (void);	
+void VECTOR (void);				
+void MATRIZ (void);
+void MENU (void);
+
+
+void main (void)
+{
+	int op;
+	do{
+		op = menu();
+		switch (op)
+		{
+			case 1:	FUNCION ();
+					break;
+			case 2:	VECTOR ();
+					break;
+			case 3:	MATRIZ ();
+					break;
+			case 4:	MENU ();
+					break;
+		}
+	}while (op != 5);
+}
+
+
+
+
+
+//************************************************ GENERAL  *********************************************************************
+int menu(void)
+{
+	int opcion;
+	system ("cls");
+	cout << "            MENU\n\n";
+	cout << "1. Funcion.\n";
+	cout << "2. Vector.\n";
+	cout << "3. Matriz.\n";
+	cout << "4. Menu.\n";
+	cout << "5. Salir.\n\n";
+
+	do{	
+		cout << "Digite opcion: ";
+		cin >> opcion;
+	} while ( ! ( (1 <= opcion) && (opcion <= 5) ) ); 
+
+	return (opcion);
+}
+
+
+
+
+
+//************************************************ FUNCION  *********************************************************************
+
+void Serie (int n);
+
+void FUNCION (void)
+{ 
+	int n;
+	system ("cls");
+	cout << "Ingrese n: ";
+	cin >> n;
+	Serie (n);
+	getch ();
+}
+
+void Serie (int n)
+{
+	int i, ter;
+	ter = 3;
+	for (i = 1; i <= n; i++)
+	{
+		cout << ter << ", ";
+		ter = ter + 3;
+	}
+}
+
+
+
+
+
+//************************************************ VECTOR  *********************************************************************
+
+void leerVector (int V[MAX], int n);
+int sumaVector (int V[MAX], int n);
+
+void VECTOR (void)
+{
+	int V[MAX], n, sol;
+	system ("cls");
+	cout << "Ingrese N: ";
+	cin >> n;
+	leerVector (V, n);
+	sol = sumaVector (V, n);
+	cout << "La suma es: " << sol;
+	_getch ();
+}
+
+void leerVector (int V[MAX], int n)
+{
+	int i;
+	for (i = 0; i < n ; i++)
+	{
+		cout << "\nV[" << i+1 << "] = ";
+		cin >> V[i];
+	}
+}
+
+int sumaVector (int V[MAX], int n)
+{
+	int s, i;
+	s = 0;
+	for (i = 0; i < n ; i++)
+	{
+		s = s + V[i];
+	}
+	return (s);
+}
+
+
+
+
+
+//************************************************ MATRIZ  *********************************************************************
+
+void trampuestaMat (int A[MAX][MAX], int na, int ma, int B[MAX][MAX], int &nb, int &mb);
+void cargarMat (int A[MAX][MAX], int n, int m);
+void mostrarMat (int A[MAX][MAX], int n, int m);
+
+void MATRIZ (void)
+{
+	int A[MAX][MAX], na, ma, B[MAX][MAX], nb, mb;
+	system ("cls");
+	cout << "            MENU TRANSPUESTA\n\n";
+	cout << "Leer Fila na = ";
+	cin >> na;
+	cout << "Leer Columna ma = ";
+	cin >> ma;
+	cargarMat (A, na, ma);
+	mostrarMat (A, na, ma);
+	trampuestaMat (A, na, ma, B, nb, mb);
+	cout << "Los elementos de la matriz Trampuestas son: " << endl;
+	mostrarMat (B, nb, mb);
+	_getch ();
+}
+
+void trampuestaMat (int A[MAX][MAX], int na, int ma, int B[MAX][MAX], int &nb, int &mb)
+{
+	int i, j;
+	for (i = 0; i < na; i++)
+	{
+		for (j = 0; j < ma; j++)
+			B[j][i] = A[i][j];
+	}
+	nb = ma;
+	mb = na;
+}
+
+void cargarMat (int A[MAX][MAX], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			cout << "A[" << i+1 << ", " << j+1 << "] = ";
+			cin >> A[i][j];
+		}
+	}
+}
+
+void mostrarMat (int A[MAX][MAX], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+			cout << setw(5) << A[i][j];
+		cout << endl;
+	}
+}
+
+
+
+
+
+//************************************************ MENU *********************************************************************
+
+int menu2(void);
+
+void MENU (void)
+{
+	int op, a, b, sol;
+	system ("cls");
+	do{
+		op = menu2 ();
+		switch (op)
+		{
+			case 1:	cout << "Leer a: ";
+					cin >> a;
+					cout << "Leer b: ";
+					cin >> b;
+					break;
+			case 2:	sol = a + b;
+					cout << "La suma es: " << sol;
+					getch ();
+					break;
+			case 3:	sol = a - b;
+					cout << "La resta es: " << sol;
+					getch ();
+					break;
+			case 4:	sol = a * b;
+					cout << "La multiplicacion es: " << sol;
+					getch ();
+					break;
+			case 5:	sol = a / b;
+					cout << "La division es: " << sol;
+					getch ();
+					break;
+		}
+	}while (op != 6);
+}
+
+int menu2(void)
+{
+	int opcion;
+	system ("cls");
+	cout << "            MENU\n\n";
+	cout << "1. Datos.\n";
+	cout << "2. Suma.\n";
+	cout << "3. resta.\n";
+	cout << "4. Multiplicacion.\n";
+	cout << "5. Division.\n";
+	cout << "6. Salir.\n\n";
+
+	do{	
+		cout << "Digite opcion: ";
+		cin >> opcion;
+	} while ( ! ( (1 <= opcion) && (opcion <= 6) ) ); 
+
+	return (opcion);
+}
